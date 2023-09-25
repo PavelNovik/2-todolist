@@ -10,12 +10,12 @@ const Tasks = (props: TasksPropsType) => {
         <div>
             <h1>{props.data.title}</h1>
             <ul>
-                {props.data.tasks.map(el => {
+                {props.data.tasks.map((el, i) => {
                     return (
                         <li>
-                            <span>{el.id}</span>
-                            <span>{el.title}</span>
-                            <span>{el.isDone}</span>
+                            <span>{i + 1}-</span>
+                            <span>-{el.title}-</span>
+                            <span>-{`${el.isDone}`}</span>
                         </li>
                     )
                 })}
