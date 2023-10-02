@@ -1,3 +1,6 @@
+body {
+  background-color: #a2a2a2;
+}
 .App {
   padding: 30px;
   display: flex;
@@ -5,4 +8,24 @@
 
 .App > div {
   margin-right: 50px;
+}
+.todolist {
+  border-radius: 10px;
+  border: 1px solid black;
+  padding: 20px;
+  background-color: blanchedalmond;
+}
+.error {
+  border: red 1px solid;
+}
+
+.error-message {
+  color: red;
+}
+.active-filter {
+  background-color: darkred;
+  color: antiquewhite;
+}
+.is-done {
+  opacity: 0.5;
 }

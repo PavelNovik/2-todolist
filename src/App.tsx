@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import './App.css';
 // import Tasks from "./Task";
 import {TaskType, Todolist} from './Todolist';
-import {v1} from "uuid";
+// import {v1} from "uuid";
 
 export type DataType = {
     title: string
@@ -141,13 +141,13 @@ function App() {
         setTasks(tasks.filter(t => t.id !== id));
     }
 
-    // const [filter, setFilter] = useState<FilterValuesType>("all");
+    const [filter, setFilter] = useState<FilterValuesType>("all");
 
-    // const tasksForTodolist = filter === "active" ? tasks.filter(t => !t.isDone) : filter === "completed" ? tasks.filter(t => t.isDone) : filter === "three" ? tasks.filter(t => t.id < 4) : tasks;
+    const tasksForTodolist = filter === "active" ? tasks.filter(t => !t.isDone) : filter === "completed" ? tasks.filter(t => t.isDone) : filter === "three" ? tasks.filter((t, i) => i < 3) : tasks;
 
-    // function changeFilter(value: FilterValuesType) {
-    //     setFilter(value);
-    // }
+    function changeFilter(value: FilterValuesType) {
+        setFilter(value);
+    }
 
     const deleteAllTask = () => {
         setTasks([])
@@ -159,15 +159,31 @@ function App() {
         setTasks(newTasks)
     }
 
+    function changeTaskStatus(id: string, isDone: boolean) {
+        const updatedTask = tasks.map(t => t.id === id ? {...t, isDone: isDone} : t)
+        setTasks(updatedTask)
+        // const task = tasks.find(t => t.id === id)
+        // if (task) {
+        //     task.isDone = isDone
+        //     setTasks([...tasks])
+        // }
+    }
+
+    const changeTaskTitle = () => {
+    }
+
     return (
         <div className="App">
             <Todolist title="What to learn"
-                // tasks={tasksForTodolist}
-                      tasks={tasks}
+                      tasks={tasksForTodolist}
+                //       tasks={tasks}
                       addTask={addTask}
                       removeTask={removeTask}
-                // changeFilter={changeFilter}
-                      deleteAllTask={deleteAllTask}/>
+                      changeTaskStatus={changeTaskStatus}
+                      changeFilter={changeFilter}
+                      deleteAllTask={deleteAllTask}
+                      filter={filter}
+            />
             {/*<Tasks data={data1}/>*/}
             {/*<Tasks data={data2}/>*/}
         </div>
